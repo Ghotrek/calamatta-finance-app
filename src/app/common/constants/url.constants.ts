@@ -1,0 +1,1 @@
+export const MARKET_URL = 'market/v2/get-quotes';
