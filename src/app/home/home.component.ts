@@ -13,7 +13,10 @@ import { LoaderComponent } from '../common/loader/loader.component';
 })
 export class HomeComponent implements OnInit {
   
+  //signal for binding data to app-stock component
   stocks = signal<QuoteResult[] | null>(null);
+  
+  //show/hide error toast message
   serviceError = signal<boolean>(false);
   private readonly _SIGNALR_SERVICE = inject(SignalRService);
 
