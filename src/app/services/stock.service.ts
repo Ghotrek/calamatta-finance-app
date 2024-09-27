@@ -18,15 +18,15 @@ export class StockService {
    * @param {string} symbols - Symbol of market stock separated with comma
    * @return {Observable<QuoteResult[]>} The API response
    */
-    getStock(): Observable<QuoteResult[]> {
+    getStock(region = 'US', symbols = 'AMD,IBM,AAPL,NVDA'): Observable<QuoteResult[]> {
         return this.http.get<StockResponse>(`${ENV.api}${MARKET_URL}`, {
             headers: {
                 'x-rapidapi-key': `${ENV.key}`,
                 'x-rapidapi-host': `${ENV.host}`,
             },
             params: {
-                region: 'US',
-                symbols: 'AMD,IBM,AAPL,NVDA'
+                region: region,
+                symbols: symbols
             }
         }).pipe(map((response) => { return response.quoteResponse.result }));
     }
