@@ -11,6 +11,13 @@ import { QuoteResult, StockResponse } from "../model/stock.interface";
 export class StockService {
     private readonly http = inject(HttpClient);
 
+   /**
+   * @method
+   * @description Http call Rapid API information
+   * @param {string} region - Refer to region where API get market quotas
+   * @param {string} symbols - Symbol of market stock separated with comma
+   * @return {Observable<QuoteResult[]>} The API response
+   */
     getStock(): Observable<QuoteResult[]> {
         return this.http.get<StockResponse>(`${ENV.api}${MARKET_URL}`, {
             headers: {
