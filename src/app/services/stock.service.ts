@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { map, Observable } from "rxjs";
 import { ENV } from "../../environments/environment";
@@ -9,6 +9,7 @@ import { QuoteResult, StockResponse } from "../model/stock.interface";
     providedIn: 'root'
 })
 export class StockService {
+
     private readonly http = inject(HttpClient);
 
    /**
@@ -28,6 +29,8 @@ export class StockService {
                 region: region,
                 symbols: symbols
             }
-        }).pipe(map((response) => { return response.quoteResponse.result }));
+        }).pipe(map((response) => {
+            return response.quoteResponse.result 
+        }));
     }
 }
