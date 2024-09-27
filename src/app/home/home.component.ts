@@ -14,6 +14,7 @@ import { LoaderComponent } from '../common/loader/loader.component';
 export class HomeComponent implements OnInit {
   
   stocks = signal<QuoteResult[] | null>(null);
+  serviceError = signal<boolean>(false);
   private readonly _SIGNALR_SERVICE = inject(SignalRService);
 
   ngOnInit(): void {
@@ -23,7 +24,23 @@ export class HomeComponent implements OnInit {
           this.stocks.set(response);
         }
       },
-      error: (err) => console.log(err),
+      error: () => this.errorHandlig(true),
     });
+
+    this._SIGNALR_SERVICE.signalRError.subscribe({
+      next: (error) => {
+        this.errorHandlig(error);
+      },
+      error: () => this.errorHandlig(true),
+    });
+  }
+
+  closeToast() {
+    this.serviceError.set(false);
+  }
+
+  private errorHandlig(error: boolean) {
+    this.serviceError.set(error);
+    this.stocks.set(null);
   }
 }
