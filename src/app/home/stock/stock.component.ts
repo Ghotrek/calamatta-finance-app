@@ -13,20 +13,20 @@ export class StockComponent {
   inputStock = input.required<QuoteResult>();
   stockRefresh = true;
   stockSignal: Signal<QuoteResult> = this.inputStock;
-  storedStocks = signal<QuoteResult | null>(null)
+  storedStock = signal<QuoteResult | null>(null)
   stock = computed(() => {
     if (this.stockRefresh) {
       console.log(`Stock ${this.stockSignal().symbol} it's refreshed`);
       return this.stockSignal();
     } else {
       console.log(`Stock ${this.stockSignal().symbol} not refreshed`);
-      return this.storedStocks();
+      return this.storedStock();
     }
   });
   @ViewChild('stockCard') stockCard!: ElementRef;
 
   ngAfterViewInit(): void {
-    this.storedStocks.set(this.stockSignal());
+    this.storedStock.set(this.stockSignal());
     this.setStatus(this.stockRefresh);
   }
 
