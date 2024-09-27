@@ -1,1 +1,10 @@
-<p>home works!</p>
+<div class="header text-center font-mono">
+    <h1>Calamatts Finance App</h1>
+</div> 
+@if (stocks() !== null) {
+    <div class="w-full flex flex-wrap gap-3 items-center justify-center p-5 text-gray-700 font-mono">
+        @for (stock of stocks(); track $index) {
+            <app-stock [inputStock]="stock"></app-stock>
+        }
+    </div>
+}
