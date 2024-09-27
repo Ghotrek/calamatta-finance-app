@@ -1,4 +1,4 @@
-export interface StockResponseList {
+export interface StockResponse {
   quoteResponse: {
     result: QuoteResult[];
     error: any;
