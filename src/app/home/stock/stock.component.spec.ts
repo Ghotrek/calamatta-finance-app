@@ -5,7 +5,7 @@ import { ComponentRef, provideExperimentalZonelessChangeDetection } from '@angul
 import { MockMarketResponse, MockMarketResponseUpdated } from '../../../market-mock-for-test';
 import { By } from '@angular/platform-browser';
 
-fdescribe('StockComponent', () => {
+describe('StockComponent', () => {
   let component: StockComponent;
   let componentRef: ComponentRef<StockComponent>;
   let fixture: ComponentFixture<StockComponent>;
